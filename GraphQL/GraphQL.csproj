@@ -6,21 +6,23 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Attendees" />
-      <Folder Include="Common" />
-      <Folder Include="DataLoader" />
-      <Folder Include="Extensions" />
-      <Folder Include="Models" />
-      <Folder Include="Sessions" />
-      <Folder Include="Speakers" />
-      <Folder Include="Tracks" />
+        <Folder Include="Attendees" />
+        <Folder Include="Common" />
+        <Folder Include="DataLoader" />
+        <Folder Include="Extensions" />
+        <Folder Include="Models" />
+        <Folder Include="Sessions" />
+        <Folder Include="Speakers" />
+        <Folder Include="Tracks" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.5" />
+        <PackageReference Include="HotChocolate.AspNetCore" Version="11.2.2" />
+        <PackageReference Include="HotChocolate.Data" Version="11.2.2" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.5" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.5">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.5" />
     </ItemGroup>
