@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using GraphQL.Data;
+using GraphQL.Extensions;
+using GraphQL.Server.Ui.Voyager;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,6 +26,15 @@ namespace GraphQL
             services.AddPooledDbContextFactory<DataContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString(nameof(DataContext))));
 
+            services.AddGraphQLServer()
+                .AddFiltering()
+                .AddSorting()
+                .RegisterApplicationTypes()
+                .RegisterApplicationDataLoaders()
+                .RegisterApplicationQueries()
+                .RegisterApplicationMutations()
+                .RegisterApplicationSubscriptions();
+            
             // services.AddDbContext<DataContext>(options => options.UseSqlite("Data Source=conferences.db"));
         }
 
@@ -44,8 +50,13 @@ namespace GraphQL
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context => { await context.Response.WriteAsync("Hello World!"); });
+                endpoints.MapGraphQL();
             });
+
+            app.UseGraphQLVoyager(new VoyagerOptions()
+            {
+                GraphQLEndPoint = "/graphql",
+            },path: "/graphql-voyager");
         }
     }
 }
